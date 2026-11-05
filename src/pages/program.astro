@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import Mark from '../components/Mark.astro';
+import Icon from '../components/Icon.astro';
+import { sunSVG } from '../scripts/icons.js';
+import { PROGRAMS, FAQ } from '../scripts/data.js';
+---
+<Base title="Program · Rumah Tumbuh Preschool" description="Lima pengalaman belajar Rumah Tumbuh, paket kelas Reguler, Pop-Up, dan Trial, serta jadwal sesi yang bisa langsung dibooking." page="program">
+  <section class="phero c--navy" data-phero>
+    <div class="phero__shape" aria-hidden="true"><Fragment set:html={sunSVG()} /></div>
+    <div class="wrap">
+      <p class="eyebrow" data-phero-in><i></i><span data-en="Programmes">Program</span></p>
+      <h1 class="h1" data-phero-in><span data-en="Five experiences,">Lima pengalaman,</span> <Mark c="sun"><span data-en="one thread.">satu benang merah.</span></Mark></h1>
+      <p class="lead" data-phero-in data-en="Every day has its own rhythm and mood. Underneath them all: children learn through real experience.">Setiap hari punya ritme dan suasananya sendiri. Benang merahnya satu: anak belajar lewat pengalaman nyata.</p>
+    </div>
+  </section>
+
+  <section class="hscroll" data-hscroll aria-label="Program">
+    <p class="hint"><span data-en="Swipe to explore">Geser untuk menjelajah</span><Icon name="arrow" /></p>
+    <div class="htrack">
+      {PROGRAMS.map((p, i) => (
+        <article class={`pcard c--${p.color}`}>
+          <span class="pcard__num" aria-hidden="true">0{i + 1}</span>
+          <div class="pcard__days">{p.days.id.map((d, k) => <span data-en={p.days.en[k]}>{d}</span>)}</div>
+          <span class="pcard__ico"><Icon name={p.icon} /></span>
+          <span class="root" data-en={p.root.en}>{p.root.id}</span>
+          <h3>{p.name}</h3>
+          <p data-en={p.text.en} set:html={p.text.id} />
+          {p.builds && <ul class="chips">{p.builds.id.map((b, k) => <li data-en={p.builds.en[k]}>{b}</li>)}</ul>}
+          {p.example && <p class="ex" data-en={p.example.en} set:html={p.example.id} />}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="paket">
+    <div class="wrap">
+      <header class="head head--c">
+        <p class="eyebrow c--coral" data-reveal><i></i><span data-en="Packages">Paket</span></p>
+        <h2 class="h2" data-reveal><span data-en="Pick the rhythm that">Pilih ritme yang</span> <Mark c="coral"><span data-en="suits your family.">cocok untuk keluarga.</span></Mark></h2>
+        <div class="seg" role="tablist" aria-label="Jenis kelas" data-seg data-reveal>
+          <button role="tab" type="button" aria-selected="true" data-tab="reguler">Reguler Class</button>
+          <button role="tab" type="button" aria-selected="false" data-tab="popup">Pop-Up Class</button>
+          <button role="tab" type="button" aria-selected="false" data-tab="trial">Trial Class</button>
+          <span class="seg__pill" aria-hidden="true"></span>
+        </div>
+      </header>
+      <div class="packs" data-packs></div>
+      <p class="note" data-en="Latest fees are sent via WhatsApp, together with session availability.">Informasi biaya terbaru kami kirimkan lewat WhatsApp, lengkap dengan ketersediaan sesi.</p>
+    </div>
+  </section>
+
+  <section class="section" id="jadwal" style="background:var(--paper);border-block:3px solid var(--ink)">
+    <div class="wrap">
+      <header class="head">
+        <p class="eyebrow c--sun" data-reveal><i></i><span data-en="Schedule">Jadwal</span></p>
+        <h2 class="h2" data-reveal><span data-en="Pick a day & session,">Pilih hari & sesi,</span> <Mark c="sun"><span data-en="book right away.">langsung booking.</span></Mark></h2>
+        <p class="lead" data-reveal data-en="Tap the sessions you’d like (more than one is fine). Two back-to-back sessions make a longer day, with a discount.">Ketuk sesi yang diinginkan (boleh lebih dari satu). Ambil dua sesi berturut-turut untuk durasi lebih panjang, dengan potongan fee.</p>
+      </header>
+      <div class="sched" data-sched data-reveal></div>
+      <p class="note" style="text-align:left" data-en="* Sunday sessions are tentative.">* Sesi hari Minggu bersifat tentatif.</p>
+      <div class="sbar is-empty" data-sbar aria-live="polite">
+        <span data-scount></span>
+        <a class="btn btn--sun btn--sm" href="#" target="_blank" rel="noopener"><Icon name="wa" /><span data-en="Book on WhatsApp">Booking via WhatsApp</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap split" style="align-items:start">
+      <header class="head">
+        <p class="eyebrow c--plum" data-reveal><i></i>FAQ</p>
+        <h2 class="h2" data-reveal><span data-en="Questions parents">Pertanyaan yang</span> <Mark c="plum"><span data-en="often ask.">sering ditanya.</span></Mark></h2>
+        <p class="lead" data-reveal data-en="Still curious? Our team is happy to help on WhatsApp.">Belum menemukan jawabannya? Tim kami senang membantu lewat WhatsApp.</p>
+        <a class="btn" href="#" data-wa style="justify-self:start" data-reveal><Icon name="wa" /><span data-en="Ask us directly">Tanya langsung</span></a>
+      </header>
+      <div class="faq">
+        {FAQ.map((f, i) => (
+          <details data-reveal open={i === 0}>
+            <summary><span data-en={f.q.en}>{f.q.id}</span><span class="pm" aria-hidden="true"><Icon name="plus" /></span></summary>
+            <p class="ans" data-en={f.a.en} set:html={f.a.id} />
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

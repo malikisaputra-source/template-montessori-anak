@@ -1,0 +1,5 @@
+---
+// Words with a hand-drawn underline that draws itself on reveal.
+const { c = 'sun' } = Astro.props;
+---
+<span class={`mark c--${c}`} data-mark><slot /><svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M3 13 C 40 4, 80 4, 110 10 S 170 16, 197 6" /></svg></span>

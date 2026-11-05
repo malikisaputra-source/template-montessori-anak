@@ -1,0 +1,106 @@
+---
+import Base from '../layouts/Base.astro';
+import Mark from '../components/Mark.astro';
+import Icon from '../components/Icon.astro';
+import { sunSVG } from '../scripts/icons.js';
+import { PACKS } from '../scripts/data.js';
+
+const AGES = [
+  ['< 12 bulan', 'Under 12 months'], ['1–2 tahun', '1–2 years'], ['2–3 tahun', '2–3 years'], ['3–5 tahun', '3–5 years'],
+];
+const GROUPS = [['reguler', 'Reguler Class'], ['popup', 'Pop-Up Class'], ['trial', 'Trial Class']];
+const TIMES = [
+  ['Pagi (08.30–10.00)', 'Morning (08.30–10.00)'], ['Siang (10.30–12.00)', 'Late morning (10.30–12.00)'],
+  ['Sore (13.00–14.30)', 'Afternoon (13.00–14.30)'], ['Weekend (09.00–11.30)', 'Weekend (09.00–11.30)'],
+];
+const STEPS = [['Si kecil', 'Child'], ['Paket', 'Package'], ['Kontak', 'Contact'], ['Kirim', 'Send']];
+---
+<Base title="Daftar & Kunjungan · Rumah Tumbuh Preschool" description="Daftarkan si kecil atau booking kunjungan ke Rumah Tumbuh Preschool dalam empat langkah singkat, langsung terhubung ke WhatsApp." page="daftar">
+  <section class="phero c--wood" data-phero>
+    <div class="phero__shape" aria-hidden="true"><Fragment set:html={sunSVG()} /></div>
+    <div class="wrap reg">
+      <aside class="reg__aside">
+        <p class="eyebrow c--wood" data-phero-in><i></i><span data-en="Register & visit">Daftar & kunjungan</span></p>
+        <h1 class="h1" style="margin-top:20px;font-size:clamp(2.4rem,6vw,4.4rem)" data-phero-in><span data-en="One small step,">Satu langkah kecil,</span> <Mark c="sun"><span data-en="a big start.">awal yang besar.</span></Mark></h1>
+        <p class="lead" style="margin-top:20px" data-phero-in data-en="Fill in four short steps. When you’re done, your details open in WhatsApp so our team can reply with session availability and fees.">Isi empat langkah singkat. Setelah selesai, data Anda terbuka di WhatsApp sehingga tim kami bisa membalas dengan ketersediaan sesi dan biaya.</p>
+        <ul class="facts" data-phero-in>
+          <li class="c--sun"><span><Icon name="clock" /></span><span data-en="About 1 minute">Sekitar 1 menit</span></li>
+          <li class="c--navy"><span><Icon name="wa" /></span><span data-en="Reply via WhatsApp">Dibalas via WhatsApp</span></li>
+        </ul>
+      </aside>
+
+      <div class="card" style="position:relative;overflow:hidden" data-pop>
+        <ol class="steps" aria-label="Langkah">
+          {STEPS.map(([id, en], i) => <li class={i === 0 ? 'cur' : ''}><span data-en={en}>{id}</span></li>)}
+        </ol>
+        <form data-reg novalidate>
+          <div class="fstep">
+            <h3 tabindex="-1" data-en="Tell us about your little one">Ceritakan tentang si kecil</h3>
+            <div class="field">
+              <label for="anak" data-en="Child’s nickname">Nama panggilan anak</label>
+              <input class="input" id="anak" name="anak" required autocomplete="off" />
+              <span class="err" data-en="Please fill in your child’s name.">Mohon isi nama anak.</span>
+            </div>
+            <fieldset class="field">
+              <legend data-en="Age">Usia</legend>
+              <div class="choices choices--2">
+                {AGES.map(([id, en]) => <label class="choice"><input type="radio" name="usia" value={id} required /><span class="box" data-en={en}>{id}</span></label>)}
+              </div>
+              <span class="err" data-en="Please choose an age.">Mohon pilih usia.</span>
+            </fieldset>
+            <div class="fnav"><span></span><button type="button" class="btn btn--sun" data-next><span data-en="Next">Lanjut</span><Icon name="arrow" /></button></div>
+          </div>
+
+          <div class="fstep" hidden>
+            <h3 tabindex="-1" data-en="Which package interests you?">Paket mana yang diminati?</h3>
+            <fieldset class="field">
+              <legend class="sr-only">Paket</legend>
+              {GROUPS.map(([g, label]) => (
+                <p style="font:700 .8rem/1 var(--f-display);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin:8px 0 2px">{label}</p>
+                <div class="choices choices--2">
+                  {PACKS[g].map((p) => <label class="choice"><input type="radio" name="paket" value={p.key} data-label={`${label} · ${p.name}`} required /><span class="box">{p.name}<small data-en={p.sub.en}>{p.sub.id}</small></span></label>)}
+                </div>
+              ))}
+              <span class="err" data-en="Please choose a package.">Mohon pilih paket.</span>
+            </fieldset>
+            <fieldset class="field">
+              <legend data-en="Preferred time">Waktu yang diinginkan</legend>
+              <div class="choices choices--2">
+                {TIMES.map(([id, en]) => <label class="choice"><input type="radio" name="waktu" value={id} required /><span class="box" data-en={en}>{id}</span></label>)}
+              </div>
+              <span class="err" data-en="Please choose a time.">Mohon pilih waktu.</span>
+            </fieldset>
+            <div class="fnav"><button type="button" class="btn" data-prev><span data-en="Back">Kembali</span></button><button type="button" class="btn btn--sun" data-next><span data-en="Next">Lanjut</span><Icon name="arrow" /></button></div>
+          </div>
+
+          <div class="fstep" hidden>
+            <h3 tabindex="-1" data-en="How can we reach you?">Bagaimana kami menghubungi Anda?</h3>
+            <div class="field">
+              <label for="ortu" data-en="Parent’s name">Nama Ayah / Bunda</label>
+              <input class="input" id="ortu" name="ortu" required autocomplete="name" />
+              <span class="err" data-en="Please fill in your name.">Mohon isi nama Anda.</span>
+            </div>
+            <div class="field">
+              <label for="hp" data-en="WhatsApp number">Nomor WhatsApp</label>
+              <input class="input" id="hp" name="hp" type="tel" inputmode="tel" pattern="[0-9+ \-]{9,16}" required autocomplete="tel" placeholder="08xx xxxx xxxx" />
+              <span class="err" data-en="Please enter a valid number, e.g. 0812 3456 7890.">Mohon isi nomor yang valid, contoh 0812 3456 7890.</span>
+            </div>
+            <div class="field">
+              <label for="catatan" data-en="Anything we should know? (optional)">Ada yang perlu kami ketahui? (opsional)</label>
+              <textarea class="input" id="catatan" name="catatan"></textarea>
+              <span class="help" data-en="E.g. allergies, how your child handles separation, or questions.">Misalnya alergi, kesiapan berpisah, atau pertanyaan.</span>
+            </div>
+            <div class="fnav"><button type="button" class="btn" data-prev><span data-en="Back">Kembali</span></button><button type="button" class="btn btn--sun" data-next><span data-en="Review">Periksa</span><Icon name="arrow" /></button></div>
+          </div>
+
+          <div class="fstep" hidden>
+            <h3 tabindex="-1" data-en="All set! Check your details">Siap! Periksa data Anda</h3>
+            <dl class="summary" data-summary></dl>
+            <p style="color:var(--ink-2);font-size:.95rem" data-en="Tapping send opens WhatsApp with this message ready. Nothing is sent until you press send there.">Tombol kirim membuka WhatsApp dengan pesan ini sudah terisi. Tidak ada yang terkirim sebelum Anda menekan kirim di sana.</p>
+            <div class="fnav"><button type="button" class="btn" data-prev><span data-en="Edit">Ubah</span></button><button type="submit" class="btn btn--coral btn--lg"><Icon name="wa" /><span data-en="Send via WhatsApp">Kirim via WhatsApp</span></button></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>

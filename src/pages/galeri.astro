@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import Mark from '../components/Mark.astro';
+import Icon from '../components/Icon.astro';
+import { sunSVG } from '../scripts/icons.js';
+
+// Photos come from the company profile. Add more real photos here as they arrive.
+const TILES = [
+  { type: 'photo', src: '/img/kids-2.svg', cat: 'montessori', id: 'Fokus bekerja dengan material', en: 'Focused on hands-on work', ar: '3/4' },
+  { type: 'art', c: 'sun', icon: 'sparkle', cat: 'sensory', id: 'Tekstur, warna, dan suara di Pop-Up Class', en: 'Texture, colour, and sound at Pop-Up Class' },
+  { type: 'photo', src: '/img/kids-1.svg', cat: 'lifeskill', id: 'Belajar mandiri setiap hari', en: 'Learning independence every day', ar: '3/4' },
+  { type: 'art', c: 'navy', icon: 'house', cat: 'montessori', id: 'Prepared environment yang tertata', en: 'An ordered prepared environment' },
+  { type: 'photo', src: '/img/compass.svg', cat: 'thematic', id: 'Menjelajah dunia lewat tema', en: 'Exploring the world through themes', ar: '1/1' },
+  { type: 'art', c: 'plum', icon: 'mosque', cat: 'deen', id: 'Rutinitas penuh kasih sayang', en: 'Routines rooted in love' },
+  { type: 'photo', src: '/img/kids-3.svg', cat: 'thematic', id: 'Bermain dan belajar bersama', en: 'Playing and learning together', ar: '3/4' },
+  { type: 'art', c: 'wood', icon: 'flask', cat: 'lifeskill', id: 'Memasak sendiri di Life-skill Lab', en: 'Cooking at Life-skill Lab' },
+];
+const FILTERS = [
+  ['all', 'Semua', 'All'], ['montessori', 'Montessori', 'Montessori'], ['thematic', 'Thematic', 'Thematic'],
+  ['lifeskill', 'Life-skill', 'Life-skill'], ['deen', 'Deen', 'Deen'], ['sensory', 'Sensory', 'Sensory'],
+];
+---
+<Base title="Galeri · Rumah Tumbuh Preschool" description="Momen kegiatan anak-anak di Rumah Tumbuh Preschool (contoh)." page="galeri">
+  <section class="phero c--coral" data-phero>
+    <div class="phero__shape" aria-hidden="true"><Fragment set:html={sunSVG()} /></div>
+    <div class="wrap">
+      <p class="eyebrow" data-phero-in><i></i><span data-en="Gallery">Galeri</span></p>
+      <h1 class="h1" data-phero-in><span data-en="Little moments,">Momen kecil,</span> <Mark c="coral"><span data-en="big growth.">tumbuh besar.</span></Mark></h1>
+      <p class="lead" data-phero-in data-en="A peek into everyday life at the studio. Tap a photo to see it larger.">Intip keseharian di studio Rumah Tumbuh. Ketuk foto untuk melihat lebih besar.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap" data-gallery>
+      <div class="filters" data-filters role="group" aria-label="Filter">
+        {FILTERS.map(([f, id, en], i) => <button type="button" data-f={f} aria-pressed={i === 0 ? 'true' : 'false'}><span data-en={en}>{id}</span></button>)}
+      </div>
+      <div class="masonry">
+        {TILES.map((tl) => tl.type === 'photo' ? (
+          <button type="button" class="tile" data-cat={tl.cat} data-src={tl.src} data-alt={tl.id} data-pop style={`--ar:${tl.ar}`} aria-label={tl.id}>
+            <img src={tl.src} alt={tl.id} loading="lazy" />
+            <span class="cap" data-en={tl.en}>{tl.id}</span>
+          </button>
+        ) : (
+          <div class={`tile tile--art c--${tl.c}`} data-cat={tl.cat} data-pop>
+            <Icon name={tl.icon} />
+            <p data-en={tl.en}>{tl.id}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <dialog class="lb" data-lb aria-label="Foto">
+    <button class="round lb__x" type="button" aria-label="Tutup"><Icon name="close" /></button>
+    <button class="round round--prev" type="button" aria-label="Sebelumnya"><Icon name="arrow" /></button>
+    <figure><img src="" alt="" /><figcaption></figcaption></figure>
+    <button class="round round--next" type="button" aria-label="Berikutnya"><Icon name="arrow" /></button>
+  </dialog>
+
+  <section class="section band">
+    <div class="band__sun" aria-hidden="true"><Fragment set:html={sunSVG()} /></div>
+    <div class="wrap" style="position:relative">
+      <h2 class="h2" data-reveal><span data-en="Follow our days on">Ikuti keseharian kami di</span> <em class="serif">Instagram.</em></h2>
+      <div class="band__row" data-reveal>
+        <a class="btn btn--ink btn--lg" href="https://instagram.com/akun.contoh" target="_blank" rel="noopener"><Icon name="instagram" />@akun.contoh</a>
+      </div>
+    </div>
+  </section>
+</Base>

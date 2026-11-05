@@ -1,0 +1,113 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import { icon, sunSVG } from '../scripts/icons.js';
+import { CONTACT, waLink } from '../scripts/data.js';
+import '../styles/global.css';
+
+interface Props { title: string; titleEn?: string; description: string; page: string; }
+const { title, description, page } = Astro.props;
+
+const NAV = [
+  { href: '/', key: 'home', id: 'Beranda', en: 'Home', c: 'sun' },
+  { href: '/program', key: 'program', id: 'Program', en: 'Programmes', c: 'navy' },
+  { href: '/tentang', key: 'tentang', id: 'Tentang', en: 'About', c: 'plum' },
+  { href: '/galeri', key: 'galeri', id: 'Galeri', en: 'Gallery', c: 'coral' },
+];
+const SOCIAL = [
+  ['instagram', 'Instagram', CONTACT.instagram],
+  ['tiktok', 'TikTok', CONTACT.tiktok],
+  ['threads', 'Threads', CONTACT.threads],
+  ['facebook', 'Facebook', CONTACT.facebook],
+  ['linkedin', 'LinkedIn', CONTACT.linkedin],
+];
+const wa = waLink('Assalamualaikum Rumah Tumbuh, saya ingin bertanya tentang program untuk anak saya.');
+---
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f8c830" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/og.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
+    <script is:inline>
+      (function () {
+        var d = document.documentElement, q = new URLSearchParams(location.search);
+        var reduce = q.has('nomotion') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) d.classList.add('nomotion'); else d.classList.add('js-anim');
+        try { var l = q.get('lang') || localStorage.getItem('nt-lang'); if (l === 'en') d.lang = 'en'; } catch (e) {}
+      })();
+    </script>
+    <ClientRouter fallback="swap" />
+  </head>
+  <body data-page={page}>
+    <a class="skip" href="#main"><span data-en="Skip to content">Lewati ke konten</span></a>
+
+    <header class="hdr" transition:name="hdr" transition:persist>
+      <div class="hdr__bar">
+        <a href="/" class="logo" aria-label="Rumah Tumbuh, beranda"><Fragment set:html={sunSVG()} />Rumah Tumbuh</a>
+        <nav class="nav" aria-label="Utama">
+          {NAV.map((n) => <a href={n.href} data-nav={n.key}><span data-en={n.en}>{n.id}</span></a>)}
+        </nav>
+        <div class="lang" role="group" aria-label="Bahasa / Language">
+          <button type="button" data-lang="id" aria-pressed="true">ID</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <a class="btn btn--sun btn--sm" href="/daftar" data-nav="daftar"><span data-en="Book a visit">Daftar</span></a>
+        <button class="burger" type="button" aria-expanded="false" aria-controls="sheet" aria-label="Menu"><span></span></button>
+      </div>
+    </header>
+    <div class="sheet" id="sheet" transition:persist="sheet" inert>
+      {NAV.map((n) => <a class={`sheet__link c--${n.c}`} href={n.href}><i></i><span data-en={n.en}>{n.id}</span></a>)}
+      <a class="sheet__link c--wood" href="/daftar"><i></i><span data-en="Book a visit">Daftar</span></a>
+      <a class="btn btn--ink btn--lg" href={wa} target="_blank" rel="noopener"><Fragment set:html={icon('wa')} />WhatsApp {CONTACT.waDisplay}</a>
+    </div>
+
+    <main id="main"><slot /></main>
+
+    <footer class="ftr">
+      <div class="wrap">
+        <div class="ftr__grid">
+          <div>
+            <a href="/" class="logo"><Fragment set:html={sunSVG()} />Rumah Tumbuh</a>
+            <p>Play. Grow. Shine.<br /><span data-en="Play-based, Montessori-inspired preschool rooted in adab, for ages 0–5 in your city.">Preschool play-based dan Montessori-inspired yang berakar pada adab, untuk usia 0–5 tahun di kota Anda.</span></p>
+            <div class="social">
+              {SOCIAL.map(([i, l, h]) => <a href={h} target="_blank" rel="noopener" aria-label={l}><Fragment set:html={icon(i)} /></a>)}
+            </div>
+          </div>
+          <div>
+            <h4 data-en="Explore">Jelajahi</h4>
+            <nav aria-label="Footer">
+              {NAV.map((n) => <a href={n.href}><span data-en={n.en}>{n.id}</span></a>)}
+              <a href="/daftar"><span data-en="Book a visit">Daftar & kunjungan</span></a>
+            </nav>
+          </div>
+          <div>
+            <h4 data-en="Visit us">Kunjungi kami</h4>
+            <p style="margin-top:0">Gedung Contoh Lt. 1<br />Jl. Contoh Raya No. 1, Kota Contoh</p>
+            <p><span data-en="Mon–Fri 08.30–14.30 · Sat–Sun 09.00–11.30">Sen–Jum 08.30–14.30 · Sab–Min 09.00–11.30</span></p>
+            <p><a href={wa} target="_blank" rel="noopener">WhatsApp {CONTACT.waDisplay}</a></p>
+          </div>
+        </div>
+        <div class="ftr__base">
+          <span>© 2026 Yayasan Rumah Tumbuh Contoh</span>
+          <span>Play-based · Montessori-inspired · Rooted in Adab</span>
+        </div>
+      </div>
+    </footer>
+
+    <a class="fab" href={wa} target="_blank" rel="noopener" aria-label="WhatsApp Rumah Tumbuh" transition:persist="fab"><Fragment set:html={icon('wa')} /></a>
+
+    <script>
+      import { boot } from '../scripts/app.js';
+      boot();
+    </script>
+  </body>
+</html>

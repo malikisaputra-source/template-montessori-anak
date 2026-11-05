@@ -1,0 +1,104 @@
+---
+import Base from '../layouts/Base.astro';
+import Mark from '../components/Mark.astro';
+import Icon from '../components/Icon.astro';
+import { sunSVG } from '../scripts/icons.js';
+import { RELATIONSHIPS } from '../scripts/data.js';
+
+const PILLARS = [
+  { c: 'sun', icon: 'sparkle', id: ['Fitrah', 'Setiap anak lahir dengan fitrah yang baik. Tugas kami menjaga, bukan membentuk ulang.'], en: ['Fitrah', 'Every child is born with a good fitrah. Our job is to protect it, not reshape it.'] },
+  { c: 'navy', icon: 'house', id: ['Prepared environment', 'Ruang yang tertata, material konkret, dan batas yang jelas agar anak bebas memilih.'], en: ['Prepared environment', 'An ordered space, concrete materials, and clear limits so children can choose freely.'] },
+  { c: 'plum', icon: 'heart', id: ['Prepared adult', 'Guru yang hadir sepenuhnya, mengamati, dan membimbing tanpa terburu-buru.'], en: ['Prepared adult', 'Teachers who are fully present, observe, and guide without rushing.'] },
+  { c: 'wood', icon: 'mosque', id: ['Rooted in Adab', 'Nilai Islam dialami lewat rutinitas sehari-hari, berakar pada kasih sayang.'], en: ['Rooted in Adab', 'Islamic values lived through daily routine, rooted in love.'] },
+];
+const TEACHERS = [
+  { c: 'coral', icon: 'flask', id: 'Farmasi', en: 'Pharmacy' },
+  { c: 'plum', icon: 'baby', id: 'Kebidanan', en: 'Midwifery' },
+  { c: 'navy', icon: 'tree', id: 'Pendidikan Anak Usia Dini', en: 'Early Childhood Education' },
+  { c: 'sun', icon: 'sparkle', id: 'Sastra', en: 'Literature' },
+];
+---
+<Base title="Tentang · Rumah Tumbuh Preschool" description="Filosofi Rumah Tumbuh: fitrah, empat hubungan, kelas mixed-age, dan para prepared adult yang mendampingi anak." page="tentang">
+  <section class="phero c--plum" data-phero>
+    <div class="phero__shape" aria-hidden="true"><Fragment set:html={sunSVG()} /></div>
+    <div class="wrap">
+      <p class="eyebrow" data-phero-in><i></i><span data-en="About Rumah Tumbuh">Tentang Rumah Tumbuh</span></p>
+      <h1 class="h1" data-phero-in><span data-en="We keep the light">Kami menjaga cahaya</span> <Mark c="sun"><span data-en="glowing.">tetap menyala.</span></Mark></h1>
+      <p class="lead" data-phero-in data-en="We believe every child is born with fitrah and carries their own light. At Rumah Tumbuh we keep it glowing and give it room to grow, until it shines brighter and brings good to everyone around them.">Kami percaya setiap anak terlahir dengan fitrah dan membawa cahayanya masing-masing. Di Rumah Tumbuh, kami menjaga cahaya itu tetap menyala dan memberinya ruang untuk tumbuh, hingga semakin terang dan membawa kebaikan bagi sekitarnya.</p>
+    </div>
+  </section>
+
+  <div class="ribbon ribbon--sun" aria-hidden="true"><div class="ribbon__track">
+    {[0, 1].map(() => ['Play', 'Grow', 'Shine', 'Play-based', 'Montessori-inspired', 'Rooted in Adab'].map((w) => <span>{w}</span>))}
+  </div></div>
+
+  <section class="section">
+    <div class="wrap">
+      <header class="head head--c">
+        <p class="eyebrow c--sun" data-reveal><i></i><span data-en="Our foundation">Fondasi kami</span></p>
+        <h2 class="h2" data-reveal><span data-en="Four pillars of">Empat pilar</span> <Mark c="sun"><span data-en="every day.">setiap hari.</span></Mark></h2>
+      </header>
+      <div class="grid grid--2">
+        {PILLARS.map((p) => (
+          <article class={`card c--${p.c}`} data-pop style="display:flex;gap:18px;align-items:flex-start">
+            <span class="rel__ico" style="margin:0;background:var(--c);color:var(--on);flex:none"><Icon name={p.icon} /></span>
+            <div><h3 class="h3">{p.id[0]}</h3><p style="margin-top:8px;color:var(--ink-2)" data-en={p.en[1]}>{p.id[1]}</p></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--paper);border-block:3px solid var(--ink)">
+    <div class="wrap">
+      <header class="head">
+        <p class="eyebrow c--plum" data-reveal><i></i>Fitrah</p>
+        <h2 class="h2" data-reveal><span data-en="Four relationships,">Empat hubungan,</span> <Mark c="plum"><span data-en="one light.">satu cahaya.</span></Mark></h2>
+      </header>
+      <div class="grid grid--4">
+        {RELATIONSHIPS.map((r, i) => (
+          <article class={`card rel c--${r.color}`} data-tilt data-pop>
+            <span class="rel__num">0{i + 1} / 04</span>
+            <span class="rel__ico"><Icon name={r.icon} /></span>
+            <h3 data-en={r.label.en}>{r.label.id}</h3>
+            <p data-en={r.text.en}>{r.text.id}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap split split--rev">
+      <div class="polaroids" aria-hidden="true">
+        <figure class="polaroid" data-pop><img src="/img/compass.svg" alt="" loading="lazy" /><figcaption>Prepared</figcaption></figure>
+        <figure class="polaroid" data-pop><img src="/img/kids-2.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Present</figcaption></figure>
+        <figure class="polaroid" data-pop><img src="/img/kids-1.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Patient</figcaption></figure>
+      </div>
+      <div>
+        <p class="eyebrow c--navy" data-reveal><i></i><span data-en="Our teachers">Guru kami</span></p>
+        <h2 class="h2" style="margin-top:18px" data-reveal><em class="serif" data-en="Prepared adults,">Prepared adults,</em> <span data-en="fully present for every child.">hadir sepenuhnya untuk setiap anak.</span></h2>
+        <p class="lead" style="margin-top:18px" data-reveal data-en="Our teachers come from different paths and chose Montessori. One calling: walking alongside children as they grow true to their fitrah.">Guru kami datang dari latar yang berbeda, lalu memilih Montessori. Satu panggilan yang sama: mendampingi anak tumbuh sesuai fitrahnya.</p>
+        <div class="grid grid--2" style="margin-top:26px">
+          {TEACHERS.map((tc) => (
+            <div class={`stat c--${tc.c}`} data-pop style="flex-direction:row;align-items:center;gap:12px;text-align:left">
+              <span class="rel__ico" style="margin:0;width:44px;height:44px;border-radius:14px;background:var(--c);color:var(--on);flex:none"><Icon name={tc.icon} /></span>
+              <b style="font-family:var(--f-display)" data-en={tc.en}>{tc.id}</b>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="band__sun" aria-hidden="true"><Fragment set:html={sunSVG()} /></div>
+    <div class="wrap" style="position:relative">
+      <h2 class="h2" data-reveal><span data-en="Come and feel it">Rasakan suasananya</span> <em class="serif" data-en="for yourself.">secara langsung.</em></h2>
+      <div class="band__row" data-reveal>
+        <a class="btn btn--ink btn--lg" href="/daftar"><span data-en="Book a visit">Booking kunjungan</span><Icon name="arrow" /></a>
+        <a class="btn btn--lg" href="/program"><span data-en="See programmes">Lihat program</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

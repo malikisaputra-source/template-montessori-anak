@@ -1,0 +1,33 @@
+{
+  "slug": "template-montessori-anak",
+  "judul": "Template Preschool Montessori",
+  "ringkas": "Template website premium Astro untuk preschool/daycare Montessori: 5 halaman, dua bahasa, kuis program, form daftar ke WhatsApp.",
+  "teknologi": [
+    "Astro 5",
+    "GSAP",
+    "Lenis",
+    "JavaScript",
+    "CSS"
+  ],
+  "kategori": "Template Website",
+  "tier": "premium",
+  "fitur": [
+    "5 halaman: beranda, program, tentang, galeri, daftar",
+    "Dua bahasa ID/EN",
+    "Data konten & kontak di src/scripts/data.js",
+    "Kuis pencari program",
+    "Jadwal mingguan interaktif",
+    "Form daftar 4 langkah ke WhatsApp",
+    "Galeri dengan lightbox",
+    "Smooth scroll Lenis + animasi GSAP",
+    "Transisi halaman Astro"
+  ],
+  "cara": [
+    "Pasang Node.js 18+",
+    "npm install",
+    "npm run dev lalu buka localhost:4321",
+    "Ganti data di src/scripts/data.js",
+    "npm run build, unggah folder dist/"
+  ],
+  "demo": null
+}

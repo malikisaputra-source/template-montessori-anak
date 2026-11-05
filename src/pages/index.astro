@@ -1,0 +1,153 @@
+---
+import Base from '../layouts/Base.astro';
+import Mark from '../components/Mark.astro';
+import Icon from '../components/Icon.astro';
+import { sunSVG } from '../scripts/icons.js';
+import { RELATIONSHIPS, TESTIMONIALS } from '../scripts/data.js';
+
+const star = '<svg viewBox="0 0 40 40"><path fill="currentColor" stroke="#2e2630" stroke-width="2.5" stroke-linejoin="round" d="M20 3c2 9 6 13 17 17-11 4-15 8-17 17-2-9-6-13-17-17 11-4 15-8 17-17Z"/></svg>';
+const squiggle = '<svg viewBox="0 0 60 30"><path fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" d="M4 20c6-14 12-14 16 0s10 14 16 0 12-14 20-4"/></svg>';
+---
+<Base title="Rumah Tumbuh Preschool · Play. Grow. Shine." description="Preschool play-based dan Montessori-inspired yang berakar pada adab, untuk anak usia 0–5 tahun (data contoh)." page="home">
+  <section class="hero" data-hero>
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow" data-hero-in><i></i>Play. Grow. Shine.</p>
+        <h1 class="hero__title" style="margin-top:22px">
+          <span data-en="<span class='w'>Every</span> <span class='w'>child</span> <span class='w'>shines</span> <span class='w'>with</span> <span class='w'>their</span> <span class='w'><span class='pill c--sun'>own</span></span> <span class='w'>light.</span>"><span class="w">Setiap</span> <span class="w">anak</span> <span class="w">punya</span> <span class="w"><span class="pill c--sun">cahayanya</span></span> <span class="w">sendiri.</span></span>
+        </h1>
+        <p class="lead hero__lead" data-hero-in data-en="A <b>play-based</b>, <b>Montessori-inspired</b> preschool rooted in <b>adab</b>, for little ones aged 0–5 in your city. We keep that light glowing, and give it room to grow.">Preschool <b>play-based</b> dan <b>Montessori-inspired</b> yang berakar pada <b>adab</b>, untuk si kecil usia 0–5 tahun di kota Anda. Kami menjaga cahaya itu tetap menyala, dan memberinya ruang untuk tumbuh.</p>
+        <div class="hero__ctas" data-hero-in>
+          <a class="btn btn--sun btn--lg" href="/daftar"><span data-en="Book a trial class">Booking trial class</span><Icon name="arrow" /></a>
+          <a class="btn btn--lg" href="#cari-program"><span data-en="Find the right programme">Cari program yang pas</span></a>
+        </div>
+        <ul class="facts" data-hero-in>
+          <li class="c--coral"><span><Icon name="baby" /></span><span data-en="Ages 0–5">Usia 0–5 tahun</span></li>
+          <li class="c--navy"><span><Icon name="users" /></span><span data-en="Max. 10 kids / session">Maks. 10 anak / sesi</span></li>
+          <li class="c--plum"><span><Icon name="heart" /></span>Rooted in Adab</li>
+        </ul>
+      </div>
+
+      <div class="stage" aria-hidden="true">
+        <div class="stage__sun" data-depth="0.2"><Fragment set:html={sunSVG()} /></div>
+        <figure class="blob blob--a" data-depth="0.45" style="margin:0"><img src="/img/kids-2.svg" width="435" height="580" alt="" fetchpriority="high" /></figure>
+        <figure class="blob blob--b" data-depth="0.8" style="margin:0"><img src="/img/kids-1.svg" width="435" height="580" alt="" /></figure>
+        <figure class="blob blob--c" data-depth="0.7" style="margin:0"><img src="/img/kids-3.svg" width="435" height="580" alt="" /></figure>
+        <span class="sticker sticker--1 c--coral wobble" data-depth="1.1">Play-based</span>
+        <span class="sticker sticker--2 c--navy wobble" data-depth="1">Montessori</span>
+        <span class="sticker sticker--3 c--plum wobble" data-depth="1.2">Adab</span>
+        <span class="doodle doodle--1 c--sun wobble" data-depth="1.3"><Fragment set:html={star} /></span>
+        <span class="doodle doodle--2 c--coral wobble" data-depth="0.9"><Fragment set:html={squiggle} /></span>
+      </div>
+    </div>
+  </section>
+
+  <div class="ribbon" aria-hidden="true"><div class="ribbon__track">
+    {[0, 1].map(() => ['Fitrah', 'Mixed-age group', 'Prepared adult', 'Prepared environment', 'Rooted in Adab', 'Play-based'].map((w) => <span>{w}</span>))}
+  </div></div>
+
+  <!-- four relationships -->
+  <section class="section">
+    <div class="wrap">
+      <header class="head head--c">
+        <p class="eyebrow c--plum" data-reveal><i></i>Fitrah</p>
+        <h2 class="h2" data-reveal><span data-en="Four relationships we nurture">Empat hubungan yang kami</span> <Mark c="coral"><span data-en="every day.">rawat.</span></Mark></h2>
+        <p class="lead" data-reveal data-en="We believe every child is born with fitrah. Our days are designed around four relationships that keep that light glowing.">Kami percaya setiap anak terlahir dengan fitrah. Hari-hari di Rumah Tumbuh dirancang di sekitar empat hubungan yang menjaga cahaya itu tetap menyala.</p>
+      </header>
+      <div class="grid grid--4">
+        {RELATIONSHIPS.map((r, i) => (
+          <article class={`card rel c--${r.color}`} data-tilt data-pop>
+            <span class="rel__num">0{i + 1} / 04</span>
+            <span class="rel__ico"><Icon name={r.icon} /></span>
+            <h3 data-en={r.name.en}>{r.name.id}</h3>
+            <p data-en={r.text.en}>{r.text.id}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- week explorer -->
+  <section class="section" style="background:var(--paper);border-block:3px solid var(--ink)">
+    <div class="wrap week" data-week>
+      <header class="head" style="margin:0">
+        <p class="eyebrow c--navy" data-reveal><i></i><span data-en="Weekly rhythm">Ritme mingguan</span></p>
+        <h2 class="h2" data-reveal><span data-en="Seven days,">Tujuh hari,</span> <Mark c="sun"><span data-en="seven adventures.">tujuh petualangan.</span></Mark></h2>
+        <p class="lead" data-reveal data-en="Tap a day to see what your little one will experience.">Ketuk satu hari untuk melihat apa yang akan dialami si kecil.</p>
+      </header>
+      <div class="days" role="tablist" aria-label="Hari" data-reveal></div>
+      <div class="wpanel" id="wpanel" role="tabpanel" data-reveal></div>
+      <a class="btn" href="/program" style="justify-self:start" data-reveal><span data-en="See all programmes">Lihat semua program</span><Icon name="arrow" /></a>
+    </div>
+  </section>
+
+  <!-- mixed age -->
+  <section class="section">
+    <div class="wrap split">
+      <div class="polaroids" aria-hidden="true">
+        <figure class="polaroid" data-pop><img src="/img/kids-1.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Explore</figcaption></figure>
+        <figure class="polaroid" data-pop><img src="/img/kids-3.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Share</figcaption></figure>
+        <figure class="polaroid" data-pop><img src="/img/kids-2.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Grow</figcaption></figure>
+      </div>
+      <div class="c--coral">
+        <p class="eyebrow" data-reveal><i></i>Mixed-age group</p>
+        <h2 class="h2" style="margin-top:18px" data-reveal><span data-en="Learning from older friends,">Belajar dari kakak,</span> <Mark c="coral"><span data-en="caring for little ones.">menyayangi adik.</span></Mark></h2>
+        <p class="lead" style="margin-top:18px" data-reveal data-en="Real life isn’t sorted by age, so our class mixes ages 0–5. The goal is <b>social sensitivity</b>: noticing others’ needs and feelings, and responding with respect and empathy.">Di kehidupan nyata, anak tidak selalu bersama yang seusia. Karena itu kelas kami mencampur usia 0–5 tahun, untuk menumbuhkan <b>social sensitivity</b>: peka pada kebutuhan dan perasaan orang lain, lalu meresponsnya dengan hormat dan empati.</p>
+        <dl class="stats">
+          <div class="stat c--coral" data-pop><dt data-en="age range in one class">rentang usia satu kelas</dt><dd><span data-count="0">0</span>–<span data-count="5">5</span></dd></div>
+          <div class="stat c--navy" data-pop><dt data-en="kids max per session">anak maksimal per sesi</dt><dd data-count="10">10</dd></div>
+          <div class="stat c--plum" data-pop><dt data-en="sessions every weekday">sesi setiap hari kerja</dt><dd data-count="3">3</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- testimonials -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div style="display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:32px">
+        <header class="head" style="margin:0">
+          <p class="eyebrow c--sun" data-reveal><i></i><span data-en="Parents’ stories">Cerita orang tua</span></p>
+          <h2 class="h2" data-reveal><span data-en="Little steps,">Langkah kecil,</span> <Mark c="plum"><span data-en="big smiles.">senyum besar.</span></Mark></h2>
+        </header>
+        <div class="tnav" data-reveal>
+          <button class="round round--prev" type="button" data-tprev aria-label="Sebelumnya"><Icon name="arrow" /></button>
+          <button class="round" type="button" data-tnext aria-label="Berikutnya"><Icon name="arrow" /></button>
+        </div>
+      </div>
+      <div class="tcar" data-tcar>
+        {TESTIMONIALS.map((tm) => (
+          <figure class={`card tcard c--${tm.color}`} style="margin:0" data-pop>
+            <span class="ph-badge" data-en="Sample — awaiting real quote">Contoh — menunggu testimoni asli</span>
+            <blockquote data-en={tm.q.en}>{tm.q.id}</blockquote>
+            <footer><span class="av">{tm.who.split(' ')[1][0]}</span><div><b>{tm.who}</b><small data-en={tm.kid.en}>{tm.kid.id}</small></div></footer>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- quiz -->
+  <section class="section" id="cari-program" style="background:var(--mint);border-block:3px solid var(--ink)">
+    <div class="wrap split">
+      <header class="head" style="margin:0">
+        <p class="eyebrow c--navy" data-reveal><i></i>Program finder</p>
+        <h2 class="h2" data-reveal><span data-en="Which programme">Program mana yang</span> <Mark c="navy"><span data-en="fits best?">paling pas?</span></Mark></h2>
+        <p class="lead" data-reveal data-en="Three quick questions. We’ll suggest the gentlest first step for your child and family.">Jawab tiga pertanyaan singkat. Kami bantu pilihkan langkah pertama yang paling nyaman untuk si kecil dan keluarga.</p>
+      </header>
+      <div class="quiz" data-quiz aria-live="polite" data-pop></div>
+    </div>
+  </section>
+
+  <section class="section band">
+    <div class="band__sun" aria-hidden="true"><Fragment set:html={sunSVG()} /></div>
+    <div class="band__sun band__sun--2" aria-hidden="true"><Fragment set:html={sunSVG()} /></div>
+    <div class="wrap" style="position:relative">
+      <h2 class="h2" data-reveal><span data-en="Let’s grow together, starting with">Mari tumbuh bersama, mulai dari</span> <em class="serif" data-en="one visit.">satu kunjungan.</em></h2>
+      <div class="band__row" data-reveal>
+        <a class="btn btn--ink btn--lg" href="/daftar"><span data-en="Book a visit">Daftar & booking</span><Icon name="arrow" /></a>
+        <a class="btn btn--lg" href="#" data-wa><Icon name="wa" /><span data-en="Ask on WhatsApp">Tanya via WhatsApp</span></a>
+      </div>
+    </div>
+  </section>
+</Base>
