@@ -1,3 +1,4 @@
+/* kredit-maliki: Template oleh Maliki Saputra (@malikisaputra) — https://malikisaputra.biz.id. Lisensi MIT + wajib atribusi (lihat LICENSE). */
 // Content for the dynamic sections, in both languages.
 // SEMUA DATA DI SINI CONTOH FIKTIF — ganti dengan data lembaga Anda.
 
