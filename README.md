@@ -42,6 +42,22 @@ meta.json, README.md, LICENSE, ss.png
 
 Kontak & tautan sosmed di `CONTACT` (`src/scripts/data.js`), program/paket/FAQ di berkas yang sama. Nama brand: cari `Rumah Tumbuh` di `src/`. Warna di `src/styles/global.css` `:root`. Ganti ilustrasi di `public/img/` dengan foto Anda.
 
+## Ganti logo & foto
+
+Semua path gambar diatur di **`GAMBAR`** dalam `src/scripts/data.js`; berkasnya di `public/` (path diawali `/`). Ganti dengan **menimpa berkas bernama sama** atau **ubah path**-nya. Gambar bawaan adalah ilustrasi SVG buatan sendiri dan placeholder berlabel, bukan foto anak asli.
+
+| Slot | Kunci `GAMBAR` | Berkas bawaan | Rasio |
+|---|---|---|---|
+| Logo header & footer (+ favicon bila diisi) | `logo` (kosong = ikon matahari) | `public/img/logo.svg` | 1:1 |
+| Favicon & gambar bagikan | `favicon`, `og` | `public/favicon.svg`, `public/og.svg` | 1:1, 1200×630 |
+| Hero beranda (3 blob) | `hero[0..2]` | `public/img/kids-*.svg` | 3:4 |
+| Kelas campur usia (polaroid) | `kelas[0..2]` | `public/img/kids-*.svg` | 3:4 |
+| Polaroid halaman Tentang | `tentang[0..2]` | `compass.svg`, `kids-*.svg` | 3:4 |
+| Guru (nama, peran, foto) | `guru[]` | `public/img/guru-1..2.svg` | 4:5 |
+| Galeri | `galeri.material/mandiri/tema/bersama` | `public/img/*.svg` | 3:4 / 1:1 |
+
+Logo yang gagal dimuat diganti inisial nama; foto guru yang gagal diganti inisial guru. Untuk menambah foto galeri, tambah kunci di `GAMBAR.galeri` lalu satu baris di `TILES` (`src/pages/galeri.astro`). Kompres foto (≤200 KB).
+
 ## Kredit
 
 Dibuat oleh Maliki Studio — malikisaputra.biz.id, follow TikTok/IG @malikisaputra

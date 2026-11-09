@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Mark from '../components/Mark.astro';
 import Icon from '../components/Icon.astro';
 import { sunSVG } from '../scripts/icons.js';
-import { RELATIONSHIPS, TESTIMONIALS } from '../scripts/data.js';
+import { RELATIONSHIPS, TESTIMONIALS, GAMBAR } from '../scripts/data.js';
 
 const star = '<svg viewBox="0 0 40 40"><path fill="currentColor" stroke="#2e2630" stroke-width="2.5" stroke-linejoin="round" d="M20 3c2 9 6 13 17 17-11 4-15 8-17 17-2-9-6-13-17-17 11-4 15-8 17-17Z"/></svg>';
 const squiggle = '<svg viewBox="0 0 60 30"><path fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" d="M4 20c6-14 12-14 16 0s10 14 16 0 12-14 20-4"/></svg>';
@@ -30,9 +30,9 @@ const squiggle = '<svg viewBox="0 0 60 30"><path fill="none" stroke="currentColo
 
       <div class="stage" aria-hidden="true">
         <div class="stage__sun" data-depth="0.2"><Fragment set:html={sunSVG()} /></div>
-        <figure class="blob blob--a" data-depth="0.45" style="margin:0"><img src="/img/kids-2.svg" width="435" height="580" alt="" fetchpriority="high" /></figure>
-        <figure class="blob blob--b" data-depth="0.8" style="margin:0"><img src="/img/kids-1.svg" width="435" height="580" alt="" /></figure>
-        <figure class="blob blob--c" data-depth="0.7" style="margin:0"><img src="/img/kids-3.svg" width="435" height="580" alt="" /></figure>
+        <figure class="blob blob--a" data-depth="0.45" style="margin:0"><img src={GAMBAR.hero[0]} width="435" height="580" alt="" fetchpriority="high" /></figure>
+        <figure class="blob blob--b" data-depth="0.8" style="margin:0"><img src={GAMBAR.hero[1]} width="435" height="580" alt="" /></figure>
+        <figure class="blob blob--c" data-depth="0.7" style="margin:0"><img src={GAMBAR.hero[2]} width="435" height="580" alt="" /></figure>
         <span class="sticker sticker--1 c--coral wobble" data-depth="1.1">Play-based</span>
         <span class="sticker sticker--2 c--navy wobble" data-depth="1">Montessori</span>
         <span class="sticker sticker--3 c--plum wobble" data-depth="1.2">Adab</span>
@@ -85,9 +85,9 @@ const squiggle = '<svg viewBox="0 0 60 30"><path fill="none" stroke="currentColo
   <section class="section">
     <div class="wrap split">
       <div class="polaroids" aria-hidden="true">
-        <figure class="polaroid" data-pop><img src="/img/kids-1.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Explore</figcaption></figure>
-        <figure class="polaroid" data-pop><img src="/img/kids-3.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Share</figcaption></figure>
-        <figure class="polaroid" data-pop><img src="/img/kids-2.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Grow</figcaption></figure>
+        <figure class="polaroid" data-pop><img src={GAMBAR.kelas[0]} width="435" height="580" alt="" loading="lazy" /><figcaption>Explore</figcaption></figure>
+        <figure class="polaroid" data-pop><img src={GAMBAR.kelas[1]} width="435" height="580" alt="" loading="lazy" /><figcaption>Share</figcaption></figure>
+        <figure class="polaroid" data-pop><img src={GAMBAR.kelas[2]} width="435" height="580" alt="" loading="lazy" /><figcaption>Grow</figcaption></figure>
       </div>
       <div class="c--coral">
         <p class="eyebrow" data-reveal><i></i>Mixed-age group</p>

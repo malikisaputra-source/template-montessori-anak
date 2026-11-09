@@ -1,7 +1,11 @@
 ---
 import { ClientRouter } from 'astro:transitions';
 import { icon, sunSVG } from '../scripts/icons.js';
-import { CONTACT, waLink } from '../scripts/data.js';
+import { CONTACT, waLink, GAMBAR, inisial } from '../scripts/data.js';
+// Logo dari GAMBAR.logo (data.js); kosong = ikon matahari, gagal dimuat = inisial.
+const logoHTML = GAMBAR.logo
+  ? `<img class="logo__img" src="${GAMBAR.logo}" width="34" height="34" alt="" onerror="this.outerHTML='<span class=logo__ini>${inisial('Rumah Tumbuh')}</span>'" />`
+  : sunSVG();
 import '../styles/global.css';
 
 interface Props { title: string; titleEn?: string; description: string; page: string; }
@@ -30,10 +34,10 @@ const wa = waLink('Assalamualaikum Rumah Tumbuh, saya ingin bertanya tentang pro
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#f8c830" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href={GAMBAR.logo || GAMBAR.favicon} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="/og.svg" />
+    <meta property="og:image" content={GAMBAR.og} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
@@ -52,7 +56,7 @@ const wa = waLink('Assalamualaikum Rumah Tumbuh, saya ingin bertanya tentang pro
 
     <header class="hdr" transition:name="hdr" transition:persist>
       <div class="hdr__bar">
-        <a href="/" class="logo" aria-label="Rumah Tumbuh, beranda"><Fragment set:html={sunSVG()} />Rumah Tumbuh</a>
+        <a href="/" class="logo" aria-label="Rumah Tumbuh, beranda"><Fragment set:html={logoHTML} />Rumah Tumbuh</a>
         <nav class="nav" aria-label="Utama">
           {NAV.map((n) => <a href={n.href} data-nav={n.key}><span data-en={n.en}>{n.id}</span></a>)}
         </nav>
@@ -76,7 +80,7 @@ const wa = waLink('Assalamualaikum Rumah Tumbuh, saya ingin bertanya tentang pro
       <div class="wrap">
         <div class="ftr__grid">
           <div>
-            <a href="/" class="logo"><Fragment set:html={sunSVG()} />Rumah Tumbuh</a>
+            <a href="/" class="logo"><Fragment set:html={logoHTML} />Rumah Tumbuh</a>
             <p>Play. Grow. Shine.<br /><span data-en="Play-based, Montessori-inspired preschool rooted in adab, for ages 0–5 in your city.">Preschool play-based dan Montessori-inspired yang berakar pada adab, untuk usia 0–5 tahun di kota Anda.</span></p>
             <div class="social">
               {SOCIAL.map(([i, l, h]) => <a href={h} target="_blank" rel="noopener" aria-label={l}><Fragment set:html={icon(i)} /></a>)}

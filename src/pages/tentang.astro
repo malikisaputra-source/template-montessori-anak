@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Mark from '../components/Mark.astro';
 import Icon from '../components/Icon.astro';
 import { sunSVG } from '../scripts/icons.js';
-import { RELATIONSHIPS } from '../scripts/data.js';
+import { RELATIONSHIPS, GAMBAR, inisial } from '../scripts/data.js';
 
 const PILLARS = [
   { c: 'sun', icon: 'sparkle', id: ['Fitrah', 'Setiap anak lahir dengan fitrah yang baik. Tugas kami menjaga, bukan membentuk ulang.'], en: ['Fitrah', 'Every child is born with a good fitrah. Our job is to protect it, not reshape it.'] },
@@ -71,9 +71,9 @@ const TEACHERS = [
   <section class="section">
     <div class="wrap split split--rev">
       <div class="polaroids" aria-hidden="true">
-        <figure class="polaroid" data-pop><img src="/img/compass.svg" alt="" loading="lazy" /><figcaption>Prepared</figcaption></figure>
-        <figure class="polaroid" data-pop><img src="/img/kids-2.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Present</figcaption></figure>
-        <figure class="polaroid" data-pop><img src="/img/kids-1.svg" width="435" height="580" alt="" loading="lazy" /><figcaption>Patient</figcaption></figure>
+        <figure class="polaroid" data-pop><img src={GAMBAR.tentang[0]} alt="" loading="lazy" /><figcaption>Prepared</figcaption></figure>
+        <figure class="polaroid" data-pop><img src={GAMBAR.tentang[1]} width="435" height="580" alt="" loading="lazy" /><figcaption>Present</figcaption></figure>
+        <figure class="polaroid" data-pop><img src={GAMBAR.tentang[2]} width="435" height="580" alt="" loading="lazy" /><figcaption>Patient</figcaption></figure>
       </div>
       <div>
         <p class="eyebrow c--navy" data-reveal><i></i><span data-en="Our teachers">Guru kami</span></p>
@@ -87,6 +87,16 @@ const TEACHERS = [
             </div>
           ))}
         </div>
+        {GAMBAR.guru.length > 0 && (
+          <ul class="guru" style="margin-top:26px">
+            {GAMBAR.guru.map((g) => (
+              <li data-pop>
+                <img src={g.foto} width="600" height="750" alt={g.nama} loading="lazy" data-ini={inisial(g.nama)} onerror="this.outerHTML='<span class=guru__ini>'+this.dataset.ini+'</span>'" />
+                <b>{g.nama}</b><span data-en={g.peran.en}>{g.peran.id}</span>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   </section>

@@ -3,16 +3,17 @@ import Base from '../layouts/Base.astro';
 import Mark from '../components/Mark.astro';
 import Icon from '../components/Icon.astro';
 import { sunSVG } from '../scripts/icons.js';
+import { GAMBAR } from '../scripts/data.js';
 
 // Photos come from the company profile. Add more real photos here as they arrive.
 const TILES = [
-  { type: 'photo', src: '/img/kids-2.svg', cat: 'montessori', id: 'Fokus bekerja dengan material', en: 'Focused on hands-on work', ar: '3/4' },
+  { type: 'photo', src: GAMBAR.galeri.material, cat: 'montessori', id: 'Fokus bekerja dengan material', en: 'Focused on hands-on work', ar: '3/4' },
   { type: 'art', c: 'sun', icon: 'sparkle', cat: 'sensory', id: 'Tekstur, warna, dan suara di Pop-Up Class', en: 'Texture, colour, and sound at Pop-Up Class' },
-  { type: 'photo', src: '/img/kids-1.svg', cat: 'lifeskill', id: 'Belajar mandiri setiap hari', en: 'Learning independence every day', ar: '3/4' },
+  { type: 'photo', src: GAMBAR.galeri.mandiri, cat: 'lifeskill', id: 'Belajar mandiri setiap hari', en: 'Learning independence every day', ar: '3/4' },
   { type: 'art', c: 'navy', icon: 'house', cat: 'montessori', id: 'Prepared environment yang tertata', en: 'An ordered prepared environment' },
-  { type: 'photo', src: '/img/compass.svg', cat: 'thematic', id: 'Menjelajah dunia lewat tema', en: 'Exploring the world through themes', ar: '1/1' },
+  { type: 'photo', src: GAMBAR.galeri.tema, cat: 'thematic', id: 'Menjelajah dunia lewat tema', en: 'Exploring the world through themes', ar: '1/1' },
   { type: 'art', c: 'plum', icon: 'mosque', cat: 'deen', id: 'Rutinitas penuh kasih sayang', en: 'Routines rooted in love' },
-  { type: 'photo', src: '/img/kids-3.svg', cat: 'thematic', id: 'Bermain dan belajar bersama', en: 'Playing and learning together', ar: '3/4' },
+  { type: 'photo', src: GAMBAR.galeri.bersama, cat: 'thematic', id: 'Bermain dan belajar bersama', en: 'Playing and learning together', ar: '3/4' },
   { type: 'art', c: 'wood', icon: 'flask', cat: 'lifeskill', id: 'Memasak sendiri di Life-skill Lab', en: 'Cooking at Life-skill Lab' },
 ];
 const FILTERS = [

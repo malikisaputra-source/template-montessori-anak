@@ -15,6 +15,29 @@ export const CONTACT = {
   linkedin: 'https://linkedin.com/company/akun-contoh',
 };
 
+// ===== LOGO & FOTO — semua path gambar (folder public/) diatur di sini =====
+// Ganti = timpa berkas di public/img/ dengan nama sama, atau ubah path di bawah.
+export const GAMBAR = {
+  logo: '',                       // mis. '/img/logo.svg' (1:1). Kosong = ikon matahari bawaan; gagal dimuat = inisial
+  favicon: '/favicon.svg',
+  og: '/og.svg',                  // gambar bagikan (1200×630)
+  hero: ['/img/kids-2.svg', '/img/kids-1.svg', '/img/kids-3.svg'],   // 3 foto blob beranda (3:4)
+  kelas: ['/img/kids-1.svg', '/img/kids-3.svg', '/img/kids-2.svg'],  // polaroid kelas campur usia (3:4)
+  tentang: ['/img/compass.svg', '/img/kids-2.svg', '/img/kids-1.svg'], // polaroid halaman Tentang
+  guru: [                          // foto guru (4:5); kosongkan array = disembunyikan
+    { nama: 'Nama Guru 1', peran: { id: 'Guide Montessori', en: 'Montessori guide' }, foto: '/img/guru-1.svg' },
+    { nama: 'Nama Guru 2', peran: { id: 'Pendamping kelas', en: 'Class assistant' }, foto: '/img/guru-2.svg' },
+  ],
+  galeri: {                        // foto galeri per kunci (dipakai di galeri.astro)
+    material: '/img/kids-2.svg',
+    mandiri: '/img/kids-1.svg',
+    tema: '/img/compass.svg',
+    bersama: '/img/kids-3.svg',
+  },
+};
+
+export const inisial = (s) => s.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase();
+
 export const waLink = (text) =>
   `https://wa.me/${CONTACT.wa}?text=${encodeURIComponent(text)}`;
 
