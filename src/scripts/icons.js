@@ -1,4 +1,4 @@
-/* kredit-maliki: Template oleh Maliki Saputra (@malikisaputra) — https://malikisaputra.biz.id. Lisensi MIT + wajib atribusi (lihat LICENSE). */
+/* kredit-maliki: Template oleh Maliki Saputra (@malikisaputra) — https://malikisaputra.biz.id. Lisensi Nonkomersial Maliki Studio: wajib kredit, dilarang dijual (lihat LICENSE). */
 // Inline SVG icon set. Stroke icons inherit currentColor.
 const P = {
   arrow: '<path d="M5 12h14"/><path d="m13 6 6 6-6 6"/>',
